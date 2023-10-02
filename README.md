@@ -4,11 +4,13 @@ This repository implements a MQTT5 broker, InfluxDB 2.x, Telegraf and Arduino ES
 
 <details>
 <summary>Table of Contents</summary>
+
 - [Requirements](#requirements)
 - [Usage](#usage)
     - [Arduino Setup](#arduino-setup)
     - [Telegraf Setup](#telegraf-setup)
     - [Docker Setup](#docker-setup)
+
 </details>
 
 ## Requirements

@@ -65,7 +65,7 @@ This repository implements a MQTT5 broker, InfluxDB 2.x, Telegraf and Arduino ES
 
 11. Create and run all docker containers
     ```
-    docker-compose up -p arduino-mqtt-influx --build -d
+    docker-compose -p arduino-mqtt-influx up --build -d
     ```
 
 12. Open the InfluxDB UI at `http://localhost:8086` and create a new API token through the `Load Data` -> `API Tokens` menu. Replace the `INFLUXDB_TOKEN` in the `.env` file with the newly created token.

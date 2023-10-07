@@ -72,5 +72,5 @@ This repository implements a MQTT5 broker, InfluxDB 2.x, Telegraf and Arduino ES
 
 13. Recreate all docker containers
     ```
-    docker-compose up -p arduino-mqtt-influx --build -d
+    docker-compose -p arduino-mqtt-influx up --build -d
     ```

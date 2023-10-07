@@ -50,7 +50,7 @@ This repository implements a MQTT5 broker, InfluxDB 2.x, Telegraf and Arduino ES
 
 8. Create a Mosquitto password file
     ```
-    touch mqtt_broker/config/mosquitto/pwfile
+    touch mqtt_broker/config/pwfile
     ```
 
 9. Create and run docker container for only mqtt5 broker

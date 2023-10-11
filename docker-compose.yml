@@ -7,6 +7,7 @@ services:
     ports:
       - "1883:1883" #default mqtt port
       - "9001:9001" #default mqtt port for websockets
+    restart: unless-stopped
     volumes:
       - ./mqtt_broker/config:/mosquitto/config:rw
       - ./mqtt_broker/data:/mosquitto/data:rw
@@ -16,6 +17,7 @@ services:
   mqtt-explorer:
     image: emqx/mqttx-web
     container_name: mqtt-explorer
+    restart: unless-stopped
     ports:
       - "7777:80" #default mqtt-explorer port
   
@@ -23,6 +25,7 @@ services:
   influxdb: 
     image: influxdb:2.7
     container_name: influxdb
+    restart: unless-stopped
     ports:
       - 8086:8086
     environment:
@@ -38,6 +41,7 @@ services:
   telegraf:
     image: telegraf:1.28
     container_name: telegraf
+    restart: unless-stopped
     environment:
       - MQTT_USERNAME=${MQTT_USERNAME:-admin}
       - MQTT_PASSWORD=${MQTT_PASSWORD:-admin}

@@ -53,6 +53,35 @@ services:
     depends_on:
       - mqtt5
       - influxdb
+  
+  # Grafana
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: unless-stopped
+    network_mode: host
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - influxdb
+    
+  # Node-Red
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=${TZ:-America/Bogota}
+      - NODE_RED_CREDENTIAL_SECRET=${NODE_RED_CREDENTIAL_SECRET:-changeme}
+    container_name: node-red
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./node-red:/data
+    depends_on:
+      - mqtt5
+      - influxdb
 
 # volumes for mapping data,config and log
 volumes:
@@ -60,6 +89,7 @@ volumes:
   data:
   log:
   influxdb_data:
+  grafana_data:
 
 networks:
   default:

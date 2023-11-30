@@ -44,6 +44,8 @@ This repository implements a MQTT5 broker, InfluxDB 2.x, Telegraf and Arduino ES
     DOCKER_INFLUXDB_INIT_PASSWORD=changeme
     DOCKER_INFLUXDB_INIT_ORG=changeme
     DOCKER_INFLUXDB_INIT_BUCKET=changeme
+    TZ=changeme
+    NODE_RED_CREDENTIAL_SECRET=changeme
     ```
 
     Note: `MQTT_USERNAME` and `MQTT_PASSWORD` must match the credentials in the `secrets.h` file. This will later be created as a user in the MQTT broker. Also the `INFLUXDB_TOKEN` will be later created as a token in InfluxDB.

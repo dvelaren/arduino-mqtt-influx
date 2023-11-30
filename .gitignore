@@ -19,3 +19,6 @@ mqtt_broker/config/pwfile
 mqtt_broker/config/aclfile
 mqtt_broker/data
 mqtt_broker/log
+
+# Nodered
+node-red

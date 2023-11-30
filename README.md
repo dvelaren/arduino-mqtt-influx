@@ -55,22 +55,37 @@ This repository implements a MQTT5 broker, InfluxDB 2.x, Telegraf and Arduino ES
 
 9. Create and run docker container for only mqtt5 broker
     ```
-    docker-compose up -d mqtt5
+    docker compose up -d mqtt5
     ```
 
 10. Create a user in the MQTT broker. Replace `<MQTT_USERNAME>` and `<MQTT_PASSWORD>` with your own values also used in the `secrets.h` file.
     ```
-    docker-compose exec mqtt5 mosquitto_passwd -b /mosquitto/config/pwfile <MQTT_USERNAME> <MQTT_PASSWORD>
+    docker compose exec mqtt5 mosquitto_passwd -b /mosquitto/config/pwfile <MQTT_USERNAME> <MQTT_PASSWORD>
     ```
 
-11. Create and run all docker containers
+11. Create Access Control List (ACL) file to give authorization to certain topics to each user
     ```
-    docker-compose -p arduino-mqtt-influx up --build -d
+    nano mqtt_broker/config/aclfile
+    ```
+    Include the following lines
+    ```
+    # Give admin user full access to everything
+    user admin
+    topic #
+
+    # Allow user 2 read/write to topic foo/bar/baz
+    user user2
+    topic foo/bar/#
     ```
 
-12. Open the InfluxDB UI at `http://localhost:8086` and create a new API token through the `Load Data` -> `API Tokens` menu. Replace the `INFLUXDB_TOKEN` in the `.env` file with the newly created token.
-
-13. Recreate all docker containers
+12. Create and run all docker containers
     ```
-    docker-compose -p arduino-mqtt-influx up --build -d
+    docker compose -p arduino-mqtt-influx up --build -d
+    ```
+
+13. Open the InfluxDB UI at `http://localhost:8086` and create a new API token through the `Load Data` -> `API Tokens` menu. Replace the `INFLUXDB_TOKEN` in the `.env` file with the newly created token.
+
+14. Recreate all docker containers
+    ```
+    docker compose -p arduino-mqtt-influx up --build -d
     ```
